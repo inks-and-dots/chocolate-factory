@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Factory Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7e1c1;
+            color: #4a2c2a;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #d2691e;
+            margin-top: 20px;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d2691e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #a0522d;
+        }
+
+        .preview {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px dashed #a0522d;
+            background: #fff8e7;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #4a2c2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chocolate Factory Game</h1>
+    <div class="container">
+        <label for="shape">Choose Chocolate Shape:</label>
+        <select id="shape">
+            <option value="circle">Circle</option>
+            <option value="rectangle">Rectangle</option>
+            <option value="heart">Heart</option>
+        </select>
+
+        <label for="type">Choose Chocolate Type:</label>
+        <select id="type">
+            <option value="milk">Milk Chocolate</option>
+            <option value="dark">Dark Chocolate</option>
+            <option value="white">White Chocolate</option>
+        </select>
+
+        <label for="topping">Choose Topping:</label>
+        <select id="topping">
+            <option value="sprinkles">Sprinkles</option>
+            <option value="nuts">Nuts</option>
+            <option value="caramel">Caramel Drizzle</option>
+        </select>
+
+        <button onclick="showChocolate()">Create Chocolate</button>
+
+        <div class="preview" id="chocolatePreview">
+            <p>Select options to see your chocolate!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ for Chocolate Day</p>
+    </footer>
+
+    <script>
+        function showChocolate() {
+            const shape = document.getElementById("shape").value;
+            const type = document.getElementById("type").value;
+            const topping = document.getElementById("topping").value;
+
+            const imagePaths = {
+                circle: {
+                    milk: {
+                        sprinkles: "circle_milk_sprinkle.png", // Corrected Path!
+                        nuts: "circle_milk_nuts.png",        // Corrected Path!
+                        caramel: "circle_milk_caramel.png"   // Corrected Path!
+                    },
+                    dark: {
+                        sprinkles: "circle_dark_sprinkle.png", // Corrected Path!
+                        nuts: "circle_dark_nuts.png",        // Corrected Path!
+                        caramel: "circle_dark_caramel.png"   // Corrected Path!
+                    },
+                    white: {
+                        sprinkles: "circle_white_sprinkle.png", // Corrected Path!
+                        nuts: "circle_white_nuts.png",        // Corrected Path!
+                        caramel: "circle_white_caramel.png"   // Corrected Path!
+                    }
+                },
+                rectangle: {
+                    milk: {
+                        sprinkles: "rectangle_milk_sprinkle.png", // Corrected Path!
+                        nuts: "rectangle_milk_nuts.png",        // Corrected Path!
+                        caramel: "rectangle_milk_caramel.png"   // Corrected Path!
+                    },
+                    dark: {
+                        sprinkles: "rectangle_dark_sprinkle.png", // Corrected Path!
+                        nuts: "rectangle_dark_nuts.png",        // Corrected Path!
+                        caramel: "rectangle_dark_caramel.png"   // Corrected Path!
+                    },
+                    white: {
+                        sprinkles: "rectangle_white_sprinkle.png", // Corrected Path!
+                        nuts: "rectangle_white_nuts.png",        // Corrected Path!
+                        caramel: "rectangle_white_caramel.png"   // Corrected Path!
+                    }
+                },
+                heart: {
+                    milk: {
+                        sprinkles: "heart_milk_sprinkle.png", // Corrected Path!
+                        nuts: "heart_milk_nuts.png",        // Corrected Path!
+                        caramel: "heart_milk_caramel.png"   // Corrected Path!
+                    },
+                    dark: {
+                        sprinkles: "heart_dark_sprinkle.png", // Corrected Path!
+                        nuts: "heart_dark_nuts.png",        // Corrected Path!
+                        caramel: "heart_dark_caramel.png"   // Corrected Path!
+                    },
+                    white: {
+                        sprinkles: "heart_white_sprinkle.png", // Corrected Path!
+                        nuts: "heart_white_nuts.png",        // Corrected Path!
+                        caramel: "heart_white_caramel.png"   // Corrected Path!
+                    }
+                }
+            };
+
+            const imagePath = imagePaths[shape]?.[type]?.[topping];
+            const preview = document.getElementById("chocolatePreview");
+
+            if (imagePath) {
+                preview.innerHTML = `<img src="${imagePath}" alt="${type} ${shape} chocolate with ${topping}">`;
+            } else {
+                preview.innerHTML = "<p>Image not found!</p>";
+            }
+        }
+    </script>
+</body>
+</html>
