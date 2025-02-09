@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # Runs on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write # Grants write permission to the GitHub Pages deployment
+      contents: read # Grants read permission to the repository contents
+    steps:
+      - uses: actions/checkout@v3 # Checks out your repository
+      - name: Set up Pages
+        uses: actions/configure-pages@v3
+        with:
+          # Automatically detect directory/file changes
+          source: . # The '.' indicates the root directory
+          # Optional: Specify a custom domain
+          # custom_domain: my.example.com
+      - name: Build website
+        run: echo "Building website..." # Replace with your actual build command if needed. For your static website, you might not need a build step.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: . # Uploads all files in the root directory
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
